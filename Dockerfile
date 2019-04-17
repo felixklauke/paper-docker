@@ -12,8 +12,8 @@ MAINTAINER Felix Klauke <info@felix-klauke.de>
 #################
 ### Arguments ###
 #################
-ARG PAPERSPIGOT_CI_BUILDNUMBER=1563
-ARG PAPERSPIGOT_CI_URL=https://ci.destroystokyo.com/job/PaperSpigot/${PAPERSPIGOT_CI_BUILDNUMBER}/artifact/paperclip-${PAPERSPIGOT_CI_BUILDNUMBER}.jar
+ARG PAPERSPIGOT_CI_BUILDNUMBER=1613
+ARG PAPERSPIGOT_CI_URL=https://papermc.io/ci/job/Paper/${PAPERSPIGOT_CI_BUILDNUMBER}/artifact/paperclip-${PAPERSPIGOT_CI_BUILDNUMBER}.jar
 
 ##########################
 ### Download paperclip ###
@@ -24,8 +24,8 @@ ADD ${PAPERSPIGOT_CI_URL} /opt/minecraft/server/paperclip.jar
 ### Run paperclip and obtain patched jar ###
 ############################################
 RUN cd /opt/minecraft/server/ \
-    && java -jar paperclip.jar; exit 0 
-    
+    && java -jar paperclip.jar; exit 0
+
 RUN cd /opt/minecraft/server/ \
     && mv cache/patched*.jar paperspigot.jar
 
