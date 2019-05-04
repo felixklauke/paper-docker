@@ -13,7 +13,7 @@ MAINTAINER Felix Klauke <info@felix-klauke.de>
 ### Arguments ###
 #################
 ARG PAPERSPIGOT_CI_BUILDNUMBER=1613
-ARG PAPERSPIGOT_CI_URL=https://papermc.io/ci/job/Paper/${PAPERSPIGOT_CI_BUILDNUMBER}/artifact/paperclip-${PAPERSPIGOT_CI_BUILDNUMBER}.jar
+ARG PAPERSPIGOT_CI_URL=https://papermc.io/ci/job/Paper/${PAPERSPIGOT_CI_BUILDNUMBER}/artifact/paperclip.jar
 
 ##########################
 ### Download paperclip ###
@@ -34,11 +34,16 @@ RUN cd /opt/minecraft/server/ \
 ###########################
 FROM anapsix/alpine-java:latest
 
-###################
-### Environment ###
-###################
-ENV JAVA_ARGS "-Xmx2G"
-ENV SPIGOT_ARGS ""
+##########################
+### Environment & ARGS ###
+##########################
+ARG MINECRAFT_PATH=/opt/minecraft
+ARG CONFIG_PATH=${MINECRAFT_PATH}/config
+ARG WORLDS_PATH=${MINECRAFT_PATH}/worlds
+ARG PLUGINS_PATH=${MINECRAFT_PATH}/plugins
+
+ENV JAVA_ARGS "-Xmx2G -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -server"
+ENV SPIGOT_ARGS "--bukkit-settings ${CONFIG_PATH}/bukkit.yml --plugins ${PLUGINS_PATH} --world-dir ${WORLDS_PATH} --spigot-settings ${CONFIG_PATH}/spigot.yml --commands-settings ${CONFIG_PATH}/commands.yml --config ${CONFIG_PATH}/server.properties"
 ENV PAPERSPIGOT_ARGS ""
 
 #########################
@@ -59,7 +64,9 @@ ADD start.sh .
 ###############
 ### Volumes ###
 ###############
-VOLUME "/data"
+VOLUME "/opt/minecraft/config"
+VOLUME "/opt/minecraft/worlds"
+VOLUME "/opt/minecraft/plugins"
 
 #############################
 ### Expose minecraft port ###
