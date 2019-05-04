@@ -44,17 +44,17 @@ ENV PAPERSPIGOT_ARGS ""
 #########################
 ### Working directory ###
 #########################
-WORKDIR /data
+WORKDIR /opt/minecraft/server
 
 ###########################################
 ### Obtain runable jar from build stage ###
 ###########################################
-COPY --from=build /opt/minecraft/server/paperspigot.jar /opt/minecraft/server/paperspigot.jar
+COPY --from=build /opt/minecraft/server/paperspigot.jar .
 
 ########################
 ### Obtain starth.sh ###
 ########################
-ADD start.sh /opt/minecraft/server/start.sh
+ADD start.sh .
 
 ###############
 ### Volumes ###
@@ -69,4 +69,4 @@ EXPOSE 25565
 ######################################
 ### Entrypoint is the start script ###
 ######################################
-ENTRYPOINT sh /opt/minecraft/server/start.sh
+ENTRYPOINT sh start.sh
