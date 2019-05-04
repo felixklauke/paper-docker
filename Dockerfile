@@ -12,8 +12,9 @@ MAINTAINER Felix Klauke <info@felix-klauke.de>
 #################
 ### Arguments ###
 #################
+ARG PAPERSPIGOT_CI_JOB=Paper
 ARG PAPERSPIGOT_CI_BUILDNUMBER=1613
-ARG PAPERSPIGOT_CI_URL=https://papermc.io/ci/job/Paper/${PAPERSPIGOT_CI_BUILDNUMBER}/artifact/paperclip.jar
+ARG PAPERSPIGOT_CI_URL=https://papermc.io/ci/job/${PAPERSPIGOT_CI_JOB}/${PAPERSPIGOT_CI_BUILDNUMBER}/artifact/paperclip.jar
 
 ##########################
 ### Download paperclip ###
@@ -42,9 +43,9 @@ ARG CONFIG_PATH=${MINECRAFT_PATH}/config
 ARG WORLDS_PATH=${MINECRAFT_PATH}/worlds
 ARG PLUGINS_PATH=${MINECRAFT_PATH}/plugins
 
-ENV JAVA_ARGS "-Xmx2G -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -server"
+ENV JAVA_ARGS "-Xmx2G -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -server -Dcom.mojang.eula.agree=true"
 ENV SPIGOT_ARGS "--bukkit-settings ${CONFIG_PATH}/bukkit.yml --plugins ${PLUGINS_PATH} --world-dir ${WORLDS_PATH} --spigot-settings ${CONFIG_PATH}/spigot.yml --commands-settings ${CONFIG_PATH}/commands.yml --config ${CONFIG_PATH}/server.properties"
-ENV PAPERSPIGOT_ARGS ""
+ENV PAPERSPIGOT_ARGS "--paper-settings ${CONFIG_PATH}/paper.yml"
 
 #########################
 ### Working directory ###

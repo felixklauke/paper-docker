@@ -1,9 +1,12 @@
 version: '3'
+
 services:
   minecraft:
-    image: felixklauke/paperspigot
+    image: felixklauke/paperspigot:1.12.2
     restart: always
     ports:
       - 25565:25565
     volumes:
-      - /srv/minecraft:/data
+      - ./config:/opt/minecraft/config
+      - ./worlds:/opt/minecraft/worlds
+      - ./plugins:/opt/minecraft/plugins
