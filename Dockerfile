@@ -52,6 +52,13 @@ ENV PAPERSPIGOT_ARGS "--paper-settings ${CONFIG_PATH}/paper.yml"
 #########################
 WORKDIR /opt/minecraft/server
 
+############
+### User ###
+############
+RUN useradd -ms /bin/bash minecraft
+RUN chown minecraft /opt/minecraft -R
+USER minecraft
+
 ###########################################
 ### Obtain runable jar from build stage ###
 ###########################################
