@@ -1,7 +1,7 @@
 ################################
 ### We use a java base image ###
 ################################
-FROM openjdk:12 AS build
+FROM openjdk:8 AS build
 
 #####################################
 ### Maintained by Felix Klauke    ###
@@ -25,10 +25,10 @@ ADD ${PAPERSPIGOT_CI_URL} /opt/minecraft/server/paperclip.jar
 ### Run paperclip and obtain patched jar ###
 ############################################
 RUN cd /opt/minecraft/server/ \
-    && java -jar paperclip.jar; exit 0
+	&& java -jar paperclip.jar; exit 0
 
 RUN cd /opt/minecraft/server/ \
-    && mv cache/patched*.jar paperspigot.jar
+	&& mv cache/patched*.jar paperspigot.jar
 
 ###########################
 ### Running environment ###
@@ -47,17 +47,18 @@ ENV JAVA_ARGS "-Xmx2G -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -server -Dcom.moj
 ENV SPIGOT_ARGS "--bukkit-settings ${CONFIG_PATH}/bukkit.yml --plugins ${PLUGINS_PATH} --world-dir ${WORLDS_PATH} --spigot-settings ${CONFIG_PATH}/spigot.yml --commands-settings ${CONFIG_PATH}/commands.yml --config ${CONFIG_PATH}/server.properties"
 ENV PAPERSPIGOT_ARGS "--paper-settings ${CONFIG_PATH}/paper.yml"
 
+############
+### User ###
+############
+RUN adduser -Ds /bin/bash -h /opt/minecraft papermc
+RUN mkdir -p /opt/minecraft/server
+RUN chown -R papermc /opt/minecraft
+USER papermc
+
 #########################
 ### Working directory ###
 #########################
 WORKDIR /opt/minecraft/server
-
-############
-### User ###
-############
-RUN useradd -ms /bin/bash minecraft
-RUN chown minecraft /opt/minecraft -R
-USER minecraft
 
 ###########################################
 ### Obtain runable jar from build stage ###
