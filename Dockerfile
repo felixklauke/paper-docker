@@ -1,7 +1,7 @@
 ################################
 ### We use a java base image ###
 ################################
-FROM openjdk:8 AS build
+FROM openjdk:12 AS build
 
 #####################################
 ### Maintained by Felix Klauke    ###
@@ -12,8 +12,8 @@ MAINTAINER Felix Klauke <info@felix-klauke.de>
 #################
 ### Arguments ###
 #################
-ARG PAPERSPIGOT_CI_JOB=Paper
-ARG PAPERSPIGOT_CI_BUILDNUMBER=1613
+ARG PAPERSPIGOT_CI_JOB=Paper-1.14
+ARG PAPERSPIGOT_CI_BUILDNUMBER=lastSuccessfulBuild
 ARG PAPERSPIGOT_CI_URL=https://papermc.io/ci/job/${PAPERSPIGOT_CI_JOB}/${PAPERSPIGOT_CI_BUILDNUMBER}/artifact/paperclip.jar
 
 ##########################
