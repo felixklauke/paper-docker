@@ -41,10 +41,9 @@ FROM anapsix/alpine-java:latest
 ARG MINECRAFT_PATH=/opt/minecraft
 ARG CONFIG_PATH=${MINECRAFT_PATH}/config
 ARG WORLDS_PATH=${MINECRAFT_PATH}/worlds
-ARG PLUGINS_PATH=${MINECRAFT_PATH}/plugins
 
 ENV JAVA_ARGS "-Xmx2G -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -server -Dcom.mojang.eula.agree=true"
-ENV SPIGOT_ARGS "--bukkit-settings ${CONFIG_PATH}/bukkit.yml --plugins ${PLUGINS_PATH} --world-dir ${WORLDS_PATH} --spigot-settings ${CONFIG_PATH}/spigot.yml --commands-settings ${CONFIG_PATH}/commands.yml --config ${CONFIG_PATH}/server.properties"
+ENV SPIGOT_ARGS "--bukkit-settings ${CONFIG_PATH}/bukkit.yml --world-dir ${WORLDS_PATH} --spigot-settings ${CONFIG_PATH}/spigot.yml --commands-settings ${CONFIG_PATH}/commands.yml --config ${CONFIG_PATH}/server.properties"
 ENV PAPERSPIGOT_ARGS "--paper-settings ${CONFIG_PATH}/paper.yml"
 
 ############
@@ -75,7 +74,7 @@ ADD start.sh .
 ###############
 VOLUME "/opt/minecraft/config"
 VOLUME "/opt/minecraft/worlds"
-VOLUME "/opt/minecraft/plugins"
+VOLUME "/opt/minecraft/server/plugins"
 
 #############################
 ### Expose minecraft port ###
