@@ -2,7 +2,7 @@ version: '3'
 
 services:
   minecraft:
-    image: t3rminus/paperspigot:1.14
+    image: felixklauke/paperspigot:1.12.2
     restart: always
     ports:
       - 25565:25565
