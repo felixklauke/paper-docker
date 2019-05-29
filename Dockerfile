@@ -33,7 +33,7 @@ RUN cd /opt/minecraft/server/ \
 ###########################
 ### Running environment ###
 ###########################
-FROM openjdk:8-slim-stretch
+FROM openjdk:8-slim-stretch AS runtime
 
 ##########################
 ### Environment & ARGS ###
