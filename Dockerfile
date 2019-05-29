@@ -14,7 +14,8 @@ LABEL maintainer="Felix Klauke <info@felix-klauke.de>"
 #################
 ARG PAPERSPIGOT_CI_JOB=Paper
 ARG PAPERSPIGOT_CI_BUILDNUMBER=1613
-ARG PAPERSPIGOT_CI_URL=https://papermc.io/ci/job/${PAPERSPIGOT_CI_JOB}/${PAPERSPIGOT_CI_BUILDNUMBER}/artifact/paperclip.jar
+ARG ARTIFACT_NAME=paperclip.jar
+ARG PAPERSPIGOT_CI_URL=https://papermc.io/ci/job/${PAPERSPIGOT_CI_JOB}/${PAPERSPIGOT_CI_BUILDNUMBER}/artifact/${ARTIFACT_NAME}
 
 ##########################
 ### Download paperclip ###
