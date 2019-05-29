@@ -56,3 +56,9 @@ matrix:
         - PAPERSPIGOT_CI_JOB=Paper-1.13
         - PAPERSPIGOT_CI_BUILDNUMBER=627
         - ARTIFACT_NAME=paperclip.jar
+    - name: "Minecraft 1.14.1"
+      env:
+        - MINECRAFT_VERSION_TAG=1.14.1
+        - PAPERSPIGOT_CI_JOB=Paper-1.14
+        - PAPERSPIGOT_CI_BUILDNUMBER=lastSuccessfulBuild
+        - ARTIFACT_NAME=paperclip.jar
