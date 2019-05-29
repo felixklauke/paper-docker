@@ -85,4 +85,4 @@ EXPOSE 25565
 ######################################
 ### Entrypoint is the start script ###
 ######################################
-ENTRYPOINT sh start.sh
+ENTRYPOINT bash start.sh
