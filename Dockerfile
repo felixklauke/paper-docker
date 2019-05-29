@@ -7,7 +7,7 @@ FROM openjdk:11 AS build
 ### Maintained by Felix Klauke    ###
 ### Contact: info@felix-klauke.de ###
 #####################################
-MAINTAINER Felix Klauke <info@felix-klauke.de>
+LABEL maintainer="Felix Klauke <info@felix-klauke.de>"
 
 #################
 ### Arguments ###
