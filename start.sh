@@ -1,3 +1,8 @@
-#/bin/sh
+#!/usr/bin/env bash
 java -version
-java -jar $JAVA_ARGS -Dcom.mojang.eula.agree=true /opt/minecraft/server/paperspigot.jar $SPIGOT_ARGS $PAPERSPIGOT_ARGS
+
+echo "Starting with Java Args: $JAVA_ARGS"
+echo "Starting with Spigot Args: $SPIGOT_ARGS"
+echo "Starting with Paper Args: $PAPERSPIGOT_ARGS"
+
+java -jar $JAVA_ARGS /opt/minecraft/server/paperspigot.jar $SPIGOT_ARGS $PAPERSPIGOT_ARGS
