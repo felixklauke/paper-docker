@@ -3,6 +3,8 @@ version: '3'
 services:
   minecraft:
     image: felixklauke/paperspigot:1.12.2
+    stdin_open: true
+    tty: true
     restart: always
     ports:
       - 25565:25565
