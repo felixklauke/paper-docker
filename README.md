@@ -34,10 +34,14 @@ You can find the mount locations in the `docker-compose.yml`
 # docker-compose.yml
 You can add this simple entry to your docker-compose.yml:
 ```
-version: '3'  
+
+version: '3'
+
 services:
   minecraft:
     image: felixklauke/paperspigot:1.12.2
+    stdin_open: true
+    tty: true
     restart: always
     ports:
       - 25565:25565
