@@ -1,0 +1,33 @@
+################
+### Language ###
+################
+language: bash
+
+services:
+  - docker
+
+#####################
+### Notifications ###
+#####################
+notifications:
+  email: false
+
+deploy:
+  provider: script
+  script: bash scripts/deploy.sh
+
+matrix:
+  include:
+    - name: "Minecraft 1.8.8"
+      env:
+        global:
+          - MINECRAFT_VERSION_TAG=1.8.8
+    - name: "Minecraft 1.9.4"
+      env:
+        global:
+          - MINECRAFT_VERSION_TAG=1.9.4
+
+env:
+  global:
+    - secure: Qqsf5Ip/Afz3JylDW9iFvC/h3WEHMVno7GnjvB1n41MV3hCCSTY5aNthSAas+Hd7bpxAi2UAdH45YT8g9f1+bUMmqGa6swRfq7y+9/GUKxtl/qMwMwHqTH1/12przx0YUqoNc+5rlgKtxKa9ebAQn+bq18TCn4LiFqPERolT9B0bX2jQ/ke2GgWSApmlKag5RXcpIkIqXQ7gbPuymfZCTwXv0ONuh8v/moGcbsb3+k3jfuLViE9zgxeKk6OO47r4j2Zs//DEkYvvPws5SL3IPMXdzToKN/LWHIZgbe8VBi0H+sO6+KKcQA1xgSmOHViaOnObUJnOVsnyJJzcACi6cM8OAnQRCwYke+HPq0Tm3J95giV6SGZZ8kLAXCWRpm9GSwfP0ax/Gd9UFqiVuDESefJ4pX9Hm6Ssf329v9SzxOZwJMqOVJe1tdTdsxQCs1MUyeVCOW6Uz4stPt5DLwBT88DdRnJqIxzigi/igDuhkBM+Lp06CKidv7X+SlMfbhw7vJ1FJ+sf8kNHotF+JIVncQ+I3nWdm7rUNZVw0PNedW8X+yonq4blznSypsJO5xJewyqH6nV94qNzPj2VdrWJ8F7ZKtR6568V07zv7sPq0i0NR66L+nH6QHJ7XMsx/5h7mq27wDkKWHqOl3kzEQiFKQPRni7ovmJyPx6HjwHoG54=
+    - secure: 03P6v+iDYoczthK0u0F8+KYfjrtxHTTTf/e4+dRPJeecDJ92djkaiyMHLdPVWpUvnR5miZ+YPiwqy5hPUZrGcOwHenqyJyX5CXGn/NxRTHvWkAfYMan/QnGSiNIip/bEpxBv4fv2L+i/kA0s843kcJXVsTwLOascyXrNpiMd1Muuh5XYSBKKEYQ1PO1U72JN3l0wh2Z+6Ue8uYneN+O9enS2CvnS7hflRjsIgPYyTHYaVLmIzQPiT/zrgqhFclU6o1dy6bM/KleaUUjHsQkqFlo80dRO5UxCh5mz+TNBvdRrqj8LYPQTRBh13c+BdWsVmpazJcK4XKWy49pUyRqPIgfZH5gN+AkX8PySYbOQp+sM7KGu7KNQeA9uaAtRCBdOjT2PJ74UezwvZhgVSW8pz3ytQOTetvUPwwlv/0YRqxAyrscEB687VX5N1Ydz/t/bG9XHcF9/3J/iqwqvQjPxDUD3fyUx6OsIeg94aJ+H2YGwkkMXXGeUBVO98vPVLAd/UHKJQzr4urQL04eDPIZcZL4mCYJ0HECDpDyy9gshVBBrw+5CqfZ/6JVBZBectJCBO5ETLbNVXxPF3SdhSkN44jN2gkyAi5mh25AX0ge0Tg3BcdRYkoPSL+kIylwx5QugWfke/wDodyFB0q4QW56k5LZ81rRO2ed2im46rmYxIeU=
