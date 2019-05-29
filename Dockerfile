@@ -45,7 +45,7 @@ ARG PLUGINS_PATH=${MINECRAFT_PATH}/plugins
 
 ENV PROPERTIES_LOCATION=${CONFIG_PATH}/server.properties
 ENV JAVA_ARGS "-Xmx2G -XX:+UseConcMarkSweepGC -server -Dcom.mojang.eula.agree=true"
-ENV SPIGOT_ARGS "--bukkit-settings ${CONFIG_PATH}/bukkit.yml --plugins ${PLUGINS_PATH} --world-dir ${WORLDS_PATH} --spigot-settings ${CONFIG_PATH}/spigot.yml --commands-settings ${CONFIG_PATH}/commands.yml --config ${PROPERTIES_LOCATION}"
+ENV SPIGOT_ARGS "--nojline --bukkit-settings ${CONFIG_PATH}/bukkit.yml --plugins ${PLUGINS_PATH} --world-dir ${WORLDS_PATH} --spigot-settings ${CONFIG_PATH}/spigot.yml --commands-settings ${CONFIG_PATH}/commands.yml --config ${PROPERTIES_LOCATION}"
 ENV PAPERSPIGOT_ARGS "--paper-settings ${CONFIG_PATH}/paper.yml"
 
 #################
