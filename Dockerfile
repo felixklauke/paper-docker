@@ -33,7 +33,7 @@ RUN cd /opt/minecraft/server/ \
 ###########################
 ### Running environment ###
 ###########################
-FROM anapsix/alpine-java:latest
+FROM openjdk:8-slim-stretch
 
 ##########################
 ### Environment & ARGS ###
@@ -55,8 +55,9 @@ WORKDIR /opt/minecraft/server
 ############
 ### User ###
 ############
-RUN useradd -ms /bin/bash minecraft
-RUN chown minecraft /opt/minecraft -R
+RUN useradd -ms /bin/bash minecraft && \
+    chown minecraft /opt/minecraft -R
+
 USER minecraft
 
 ###########################################
