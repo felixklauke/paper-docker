@@ -20,12 +20,34 @@ matrix:
   include:
     - name: "Minecraft 1.8.8"
       env:
-        global:
-          - MINECRAFT_VERSION_TAG=1.8.8
+        - MINECRAFT_VERSION_TAG=1.8.8
+        - PAPERSPIGOT_CI_JOB=Paper
+        - PAPERSPIGOT_CI_BUILDNUMBER=443
     - name: "Minecraft 1.9.4"
       env:
-        global:
-          - MINECRAFT_VERSION_TAG=1.9.4
+        - MINECRAFT_VERSION_TAG=1.9.4
+        - PAPERSPIGOT_CI_JOB=Paper
+        - PAPERSPIGOT_CI_BUILDNUMBER=773
+    - name: "Minecraft 1.10.1"
+      env:
+        - MINECRAFT_VERSION_TAG=1.10.2
+        - PAPERSPIGOT_CI_JOB=Paper
+        - PAPERSPIGOT_CI_BUILDNUMBER=916
+    - name: "Minecraft 1.11.2"
+      env:
+        - MINECRAFT_VERSION_TAG=1.11.2
+        - PAPERSPIGOT_CI_JOB=Paper
+        - PAPERSPIGOT_CI_BUILDNUMBER=1104
+    - name: "Minecraft 1.12.2"
+      env:
+        - MINECRAFT_VERSION_TAG=1.10.2
+        - PAPERSPIGOT_CI_JOB=Paper
+        - PAPERSPIGOT_CI_BUILDNUMBER=1613
+    - name: "Minecraft 1.13.2"
+      env:
+        - MINECRAFT_VERSION_TAG=1.13.2
+        - PAPERSPIGOT_CI_JOB=Paper-1.13
+        - PAPERSPIGOT_CI_BUILDNUMBER=627
 
 env:
   global:
