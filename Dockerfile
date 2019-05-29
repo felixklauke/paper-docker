@@ -1,7 +1,7 @@
 ################################
 ### We use a java base image ###
 ################################
-FROM openjdk:8 AS build
+FROM openjdk:11 AS build
 
 #####################################
 ### Maintained by Felix Klauke    ###
@@ -33,7 +33,7 @@ RUN cd /opt/minecraft/server/ \
 ###########################
 ### Running environment ###
 ###########################
-FROM openjdk:8-slim-stretch AS runtime
+FROM openjdk:11 AS runtime
 
 ##########################
 ### Environment & ARGS ###
@@ -43,7 +43,7 @@ ARG CONFIG_PATH=${MINECRAFT_PATH}/config
 ARG WORLDS_PATH=${MINECRAFT_PATH}/worlds
 ARG PLUGINS_PATH=${MINECRAFT_PATH}/plugins
 
-ENV JAVA_ARGS "-Xmx2G -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -server -Dcom.mojang.eula.agree=true"
+ENV JAVA_ARGS "-Xmx2G -XX:+UseConcMarkSweepGC -server -Dcom.mojang.eula.agree=true"
 ENV SPIGOT_ARGS "--bukkit-settings ${CONFIG_PATH}/bukkit.yml --plugins ${PLUGINS_PATH} --world-dir ${WORLDS_PATH} --spigot-settings ${CONFIG_PATH}/spigot.yml --commands-settings ${CONFIG_PATH}/commands.yml --config ${CONFIG_PATH}/server.properties"
 ENV PAPERSPIGOT_ARGS "--paper-settings ${CONFIG_PATH}/paper.yml"
 
