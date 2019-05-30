@@ -68,14 +68,6 @@ HEALTHCHECK --interval=10s --timeout=5s \
 #########################
 WORKDIR /opt/minecraft/server
 
-############
-### User ###
-############
-RUN useradd -ms /bin/bash minecraft && \
-    chown minecraft $MINECRAFT_PATH -R
-
-USER minecraft
-
 ###########################################
 ### Obtain runable jar from build stage ###
 ###########################################
@@ -85,6 +77,14 @@ COPY --from=build $MINECRAFT_PATH/server/paperspigot.jar .
 ### Obtain starth.sh ###
 ########################
 ADD start.sh .
+
+############
+### User ###
+############
+RUN useradd -ms /bin/bash minecraft && \
+    chown minecraft $MINECRAFT_PATH -R
+
+USER minecraft
 
 ###############
 ### Volumes ###
