@@ -39,11 +39,10 @@ FROM openjdk:11 AS runtime
 ##########################
 ### Environment & ARGS ###
 ##########################
-ARG MINECRAFT_PATH=/opt/minecraft
-ARG CONFIG_PATH=${MINECRAFT_PATH}/config
-ARG WORLDS_PATH=${MINECRAFT_PATH}/worlds
-ARG PLUGINS_PATH=${MINECRAFT_PATH}/plugins
-
+ENV MINECRAFT_PATH=/opt/minecraft
+ENV CONFIG_PATH=${MINECRAFT_PATH}/config
+ENV WORLDS_PATH=${MINECRAFT_PATH}/worlds
+ENV PLUGINS_PATH=${MINECRAFT_PATH}/plugins
 ENV PROPERTIES_LOCATION=${CONFIG_PATH}/server.properties
 ENV JAVA_HEAP_SIZE=2G
 ENV JAVA_ARGS "-Xmx${JAVA_HEAP_SIZE} -Xms${JAVA_HEAP_SIZE} -XX:+UseConcMarkSweepGC -server -Dcom.mojang.eula.agree=true"
@@ -73,14 +72,14 @@ WORKDIR /opt/minecraft/server
 ### User ###
 ############
 RUN useradd -ms /bin/bash minecraft && \
-    chown minecraft /opt/minecraft -R
+    chown minecraft $MINECRAFT_PATH -R
 
 USER minecraft
 
 ###########################################
 ### Obtain runable jar from build stage ###
 ###########################################
-COPY --from=build /opt/minecraft/server/paperspigot.jar .
+COPY --from=build $MINECRAFT_PATH/server/paperspigot.jar .
 
 ########################
 ### Obtain starth.sh ###
@@ -90,9 +89,9 @@ ADD start.sh .
 ###############
 ### Volumes ###
 ###############
-VOLUME "/opt/minecraft/config"
-VOLUME "/opt/minecraft/worlds"
-VOLUME "/opt/minecraft/plugins"
+VOLUME "${CONFIG_PATH}"
+VOLUME "${WORLDS_PATH}"
+VOLUME "${PLUGINS_PATH}"
 
 #############################
 ### Expose minecraft port ###
