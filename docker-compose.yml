@@ -12,3 +12,4 @@ services:
       - ./config:/opt/minecraft/config
       - ./worlds:/opt/minecraft/worlds
       - ./plugins:/opt/minecraft/plugins
+      - ./data:/opt/minecraft/data

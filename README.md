@@ -23,6 +23,7 @@ There are three volumes used for:
 - Worlds
 - Plugins
 - Config files (paper.yml, bukkit.yml, spigot.yml, server.properties, commands.yml)
+- Data (banned-ips.json, banned-players.json, help.yml, ops.json, permissions.yml, whitelist.json)
 
 You can find the mount locations in the `docker-compose.yml`
 
@@ -44,4 +45,5 @@ services:
       - ./config:/opt/minecraft/config
       - ./worlds:/opt/minecraft/worlds
       - ./plugins:/opt/minecraft/plugins
+      - ./data:/opt/minecraft/data
 ```
