@@ -41,6 +41,7 @@ FROM openjdk:11 AS runtime
 ##########################
 ENV MINECRAFT_PATH=/opt/minecraft
 ENV DATA_PATH=${MINECRAFT_PATH}/data
+ENV LOGS_PATH=${MINECRAFT_PATH}/logs
 ENV CONFIG_PATH=${MINECRAFT_PATH}/config
 ENV WORLDS_PATH=${MINECRAFT_PATH}/worlds
 ENV PLUGINS_PATH=${MINECRAFT_PATH}/plugins
@@ -94,6 +95,7 @@ VOLUME "${CONFIG_PATH}"
 VOLUME "${WORLDS_PATH}"
 VOLUME "${PLUGINS_PATH}"
 VOLUME "${DATA_PATH}"
+VOLUME "${LOGS_PATH}"
 
 #############################
 ### Expose minecraft port ###

@@ -11,6 +11,9 @@ ln -s $DATA_PATH/ops.json $MINECRAFT_PATH/server/ops.json
 ln -s $DATA_PATH/permissions.yml $MINECRAFT_PATH/server/permissions.yml
 ln -s $DATA_PATH/whitelist.json $MINECRAFT_PATH/server/whitelist.json
 
+# Create symlink for logs
+ln -s $LOGS_PATH $MINECRAFT_PATH/server/logs
+
 # Show java version
 java -version
 
