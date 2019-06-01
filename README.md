@@ -1,5 +1,5 @@
 # paperspigot-docker
-Easy to use and clean docker image for running paper spigot servers in docker containers using Oracle Java on Alpine Linux. 
+Easy to use and clean docker image for running paper spigot servers in docker containers using OpenJDK. 
 
 # Getting started
 The easiest way for a quick start would be:
