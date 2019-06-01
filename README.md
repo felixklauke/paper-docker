@@ -1,6 +1,8 @@
 # paperspigot-docker
 Easy to use and clean docker image for running paper spigot servers in docker containers using OpenJDK. 
 
+You may also be interest in [waterfall-docker](https://github.com/FelixKlauke/waterfall-docker) if you want to build a whole server network.
+
 # Getting started
 The easiest way for a quick start would be:
 ```
