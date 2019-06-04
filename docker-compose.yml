@@ -14,3 +14,5 @@ services:
       - ./plugins:/opt/minecraft/plugins
       - ./data:/opt/minecraft/data
       - ./logs:/opt/minecraft/logs
+
+
