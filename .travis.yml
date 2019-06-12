@@ -26,45 +26,53 @@ matrix:
         - PAPERSPIGOT_CI_JOB=Paper
         - PAPERSPIGOT_CI_BUILDNUMBER=443
         - ARTIFACT_NAME=Paperclip.jar
+        - JAVA_VERSION=8
     - name: "Minecraft 1.9.4"
       env:
         - MINECRAFT_VERSION_TAG=1.9.4
         - PAPERSPIGOT_CI_JOB=Paper
         - PAPERSPIGOT_CI_BUILDNUMBER=773
         - ARTIFACT_NAME=paperclip.jar
+        - JAVA_VERSION=8
     - name: "Minecraft 1.10.2"
       env:
         - MINECRAFT_VERSION_TAG=1.10.2
         - PAPERSPIGOT_CI_JOB=Paper
         - PAPERSPIGOT_CI_BUILDNUMBER=916
         - ARTIFACT_NAME=paperclip.jar
+        - JAVA_VERSION=8
     - name: "Minecraft 1.11.2"
       env:
         - MINECRAFT_VERSION_TAG=1.11.2
         - PAPERSPIGOT_CI_JOB=Paper
         - PAPERSPIGOT_CI_BUILDNUMBER=1104
         - ARTIFACT_NAME=paperclip.jar
+        - JAVA_VERSION=11
     - name: "Minecraft 1.12.2"
       env:
         - MINECRAFT_VERSION_TAG=1.10.2
         - PAPERSPIGOT_CI_JOB=Paper
         - PAPERSPIGOT_CI_BUILDNUMBER=1613
         - ARTIFACT_NAME=paperclip.jar
+        - JAVA_VERSION=11
     - name: "Minecraft 1.13.2"
       env:
         - MINECRAFT_VERSION_TAG=1.13.2
         - PAPERSPIGOT_CI_JOB=Paper-1.13
         - PAPERSPIGOT_CI_BUILDNUMBER=627
         - ARTIFACT_NAME=paperclip.jar
+        - JAVA_VERSION=11
     - name: "Minecraft 1.14.1"
       env:
         - MINECRAFT_VERSION_TAG=1.14.1
         - PAPERSPIGOT_CI_JOB=Paper-1.14
         - PAPERSPIGOT_CI_BUILDNUMBER=50
         - ARTIFACT_NAME=paperclip.jar
+        - JAVA_VERSION=11
     - name: "Minecraft 1.14.2"
       env:
         - MINECRAFT_VERSION_TAG=1.14.2
         - PAPERSPIGOT_CI_JOB=Paper-1.14
         - PAPERSPIGOT_CI_BUILDNUMBER=lastSuccessfulBuild
         - ARTIFACT_NAME=paperclip.jar
+        - JAVA_VERSION=11

@@ -1,7 +1,10 @@
+# Java Version
+ARG JAVA_VERSION=11
+
 ################################
 ### We use a java base image ###
 ################################
-FROM openjdk:11 AS build
+FROM openjdk:${JAVA_VERSION} AS build
 
 #####################################
 ### Maintained by Felix Klauke    ###
@@ -34,7 +37,7 @@ RUN cd /opt/minecraft/server/ \
 ###########################
 ### Running environment ###
 ###########################
-FROM openjdk:11 AS runtime
+FROM openjdk:${JAVA_VERSION} AS runtime
 
 ##########################
 ### Environment & ARGS ###
