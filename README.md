@@ -1,10 +1,19 @@
 # paperspigot-docker
-Easy to use and clean docker image for running paper spigot servers in docker containers using Oracle Java on Alpine Linux. 
+Easy to use and clean docker image for running paper spigot servers in docker containers using OpenJDK. 
+
+You may also be interest in [waterfall-docker](https://github.com/FelixKlauke/waterfall-docker) if you want to build a whole server network.
 
 # Getting started
 The easiest way for a quick start would be:
 ```
-docker run -it felixklauke/paperspigot:1.12.2
+docker run -it \
+    -p 25566:25565 \
+    -v ~/minecraft/config:/opt/minecraft/config \
+    -v ~/minecraft/worlds:/opt/minecraft/worlds \
+    -v ~/minecraft/plugins:/opt/minecraft/plugins \
+    -v ~/minecraft/data:/opt/minecraft/data \
+    -v ~/minecraft/logs:/opt/minecraft/logs \
+    felixklauke/paperspigot:1.12.2
 ```
 
 # Tags and Versions

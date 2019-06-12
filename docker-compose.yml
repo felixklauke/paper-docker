@@ -13,3 +13,6 @@ services:
       - ./worlds:/opt/minecraft/worlds
       - ./plugins:/opt/minecraft/plugins
       - ./data:/opt/minecraft/data
+      - ./logs:/opt/minecraft/logs
+
+
