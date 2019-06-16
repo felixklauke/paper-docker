@@ -76,7 +76,7 @@ WORKDIR ${MINECRAFT_PATH}
 ###########################################
 ### Obtain runable jar from build stage ###
 ###########################################
-COPY --from=build ${MINECRAFT_PATH}/server/paperspigot.jar .
+COPY --from=build /opt/minecraft/server/paperspigot.jar .
 
 ########################
 ### Obtain starth.sh ###
