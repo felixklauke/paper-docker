@@ -23,4 +23,4 @@ echo "Starting with Spigot Args: $SPIGOT_ARGS"
 echo "Starting with Paper Args: $PAPERSPIGOT_ARGS"
 
 # Start server
-java -jar $JAVA_ARGS /opt/minecraft/server/paperspigot.jar $SPIGOT_ARGS $PAPERSPIGOT_ARGS
+java -jar $JAVA_ARGS $MINECRAFT_PATH/server/paperspigot.jar $SPIGOT_ARGS $PAPERSPIGOT_ARGS
