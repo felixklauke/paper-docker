@@ -8,11 +8,11 @@ The easiest way for a quick start would be:
 ```
 docker run -it \
     -p 25566:25565 \
-    -v ~/minecraft/config:/opt/minecraft/config \
-    -v ~/minecraft/worlds:/opt/minecraft/worlds \
-    -v ~/minecraft/plugins:/opt/minecraft/plugins \
-    -v ~/minecraft/data:/opt/minecraft/data \
-    -v ~/minecraft/logs:/opt/minecraft/logs \
+    -v ~/minecraft/config:/usr/src/app/config \
+    -v ~/minecraft/worlds:/usr/src/app/worlds \
+    -v ~/minecraft/plugins:/usr/src/app/plugins \
+    -v ~/minecraft/data:/usr/src/app/data \
+    -v ~/minecraft/logs:/usr/src/app/ogs \
     felixklauke/paperspigot:1.12.2
 ```
 
@@ -45,16 +45,16 @@ version: '3.7'
 
 services:
   minecraft:
-    image: felixklauke/paperspigot:1.12.2
+    image: felixklauke/paperspigot:1.14.2
     stdin_open: true
     tty: true
     restart: always
     ports:
       - 25565:25565
     volumes:
-      - ./config:/opt/minecraft/config
-      - ./worlds:/opt/minecraft/worlds
-      - ./plugins:/opt/minecraft/plugins
-      - ./data:/opt/minecraft/data
-      - ./logs:/opt/minecraft/logs
+      - ./config:/usr/src/app/config
+      - ./worlds:/usr/src/app/worlds
+      - ./plugins:/usr/src/app/plugins
+      - ./data:/usr/src/app/data
+      - ./logs:/usr/src/app/logs
 ```

@@ -1,18 +1,18 @@
-version: '3'
+version: '3.7'
 
 services:
   minecraft:
-    image: felixklauke/paperspigot:1.12.2
+    image: felixklauke/paperspigot:1.14.2
     stdin_open: true
     tty: true
     restart: always
     ports:
       - 25565:25565
     volumes:
-      - ./config:/opt/minecraft/config
-      - ./worlds:/opt/minecraft/worlds
-      - ./plugins:/opt/minecraft/plugins
-      - ./data:/opt/minecraft/data
-      - ./logs:/opt/minecraft/logs
+      - ./config:/usr/src/app/config
+      - ./worlds:/usr/src/app/worlds
+      - ./plugins:/usr/src/app/plugins
+      - ./data:/usr/src/app/data
+      - ./logs:/usr/src/app/logs
 
 
