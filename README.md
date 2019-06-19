@@ -8,12 +8,12 @@ The easiest way for a quick start would be:
 ```
 docker run -it \
     -p 25566:25565 \
-    -v ~/minecraft/config:/usr/src/app/config \
-    -v ~/minecraft/worlds:/usr/src/app/worlds \
-    -v ~/minecraft/plugins:/usr/src/app/plugins \
-    -v ~/minecraft/data:/usr/src/app/data \
-    -v ~/minecraft/logs:/usr/src/app/ogs \
-    felixklauke/paperspigot:1.12.2
+    -v ~/minecraft/config:/opt/minecraft/config \
+    -v ~/minecraft/worlds:/opt/minecraft/worlds \
+    -v ~/minecraft/plugins:/opt/minecraft/plugins \
+    -v ~/minecraft/data:/opt/minecraft/data \
+    -v ~/minecraft/logs:/opt/minecraft/ogs \
+    felixklauke/paperspigot:1.14.2
 ```
 
 # Tags and Versions
@@ -40,21 +40,27 @@ You can find the mount locations in the `docker-compose.yml`
 # docker-compose.yml
 You can add this simple entry to your docker-compose.yml:
 ```
-
 version: '3.7'
 
 services:
   minecraft:
     image: felixklauke/paperspigot:1.14.2
+    container_name: minecraft
     stdin_open: true
     tty: true
     restart: always
+    networks:
+      - minecraft
     ports:
-      - 25565:25565
+      - 25566:25565
     volumes:
-      - ./config:/usr/src/app/config
-      - ./worlds:/usr/src/app/worlds
-      - ./plugins:/usr/src/app/plugins
-      - ./data:/usr/src/app/data
-      - ./logs:/usr/src/app/logs
+      - ./config:/opt/minecraft/config
+      - ./worlds:/opt/minecraft/worlds
+      - ./plugins:/opt/minecraft/plugins
+      - ./data:/opt/minecraft/data
+      - ./logs:/opt/minecraft/logs
+
+networks:
+  minecraft: {}
+
 ```
