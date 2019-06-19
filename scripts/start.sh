@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Do preparations
 # Create symlink for plugin volume as hotfix for some plugins who hard code their directories
+whoami
 ln -s $PLUGINS_PATH $SERVER_PATH/plugins
 
 # Create symlink for persistent data
@@ -13,6 +14,8 @@ ln -s $DATA_PATH/whitelist.json $SERVER_PATH/whitelist.json
 
 # Create symlink for logs
 ln -s $LOGS_PATH $SERVER_PATH/logs
+
+ls -la
 
 # Show java version
 java -version
