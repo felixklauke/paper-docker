@@ -12,11 +12,18 @@ services:
     ports:
       - 25566:25565
     volumes:
-      - ./config:/opt/minecraft/config
-      - ./worlds:/opt/minecraft/worlds
-      - ./plugins:/opt/minecraft/plugins
-      - ./data:/opt/minecraft/data
-      - ./logs:/opt/minecraft/logs
+      - minecraft-config:/opt/minecraft/config
+      - minecraft-worlds:/opt/minecraft/worlds
+      - minecraft-plugins:/opt/minecraft/plugins
+      - minecraft-data:/opt/minecraft/data
+      - minecraft-logs:/opt/minecraft/logs
+
+volumes:
+  minecraft-config: {}
+  minecraft-worlds: {}
+  minecraft-plugins: {}
+  minecraft-data: {}
+  minecraft-logs: {}
 
 networks:
   minecraft: {}

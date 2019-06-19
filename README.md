@@ -38,7 +38,7 @@ There are three volumes used for:
 You can find the mount locations in the `docker-compose.yml`
 
 # docker-compose.yml
-You can add this simple entry to your docker-compose.yml:
+You can add this simple entry to your docker-compose.yml when using mounted folders:
 ```
 version: '3.7'
 
@@ -59,6 +59,40 @@ services:
       - ./plugins:/opt/minecraft/plugins
       - ./data:/opt/minecraft/data
       - ./logs:/opt/minecraft/logs
+
+networks:
+  minecraft: {}
+
+```
+
+When you want to use explicit volumes, you can use this:
+```xml 
+version: '3.7'
+
+services:
+  minecraft:
+    image: felixklauke/paperspigot:1.14.2
+    container_name: minecraft
+    stdin_open: true
+    tty: true
+    restart: always
+    networks:
+      - minecraft
+    ports:
+      - 25566:25565
+    volumes:
+      - minecraft-config:/opt/minecraft/config
+      - minecraft-worlds:/opt/minecraft/worlds
+      - minecraft-plugins:/opt/minecraft/plugins
+      - minecraft-data:/opt/minecraft/data
+      - minecraft-logs:/opt/minecraft/logs
+
+volumes:
+  minecraft-config: {}
+  minecraft-worlds: {}
+  minecraft-plugins: {}
+  minecraft-data: {}
+  minecraft-logs: {}
 
 networks:
   minecraft: {}
