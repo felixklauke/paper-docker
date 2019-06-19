@@ -12,7 +12,7 @@ docker run -it \
     -v ~/minecraft/worlds:/opt/minecraft/worlds \
     -v ~/minecraft/plugins:/opt/minecraft/plugins \
     -v ~/minecraft/data:/opt/minecraft/data \
-    -v ~/minecraft/logs:/opt/minecraft/ogs \
+    -v ~/minecraft/logs:/opt/minecraft/logs \
     felixklauke/paperspigot:1.14.2
 ```
 
