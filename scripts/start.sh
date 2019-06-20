@@ -23,4 +23,5 @@ echo "Starting with Spigot Args: $SPIGOT_ARGS"
 echo "Starting with Paper Args: $PAPERSPIGOT_ARGS"
 
 # Start server
+cd $SERVER_PATH
 java -jar $JAVA_ARGS $SERVER_PATH/paperspigot.jar $SPIGOT_ARGS $PAPERSPIGOT_ARGS
