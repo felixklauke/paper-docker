@@ -22,12 +22,17 @@ The docker images are tagged for their minecraft versions. Therefor you can curr
 - `felixklauke/paperspigot:1.14.3` 
 - `felixklauke/paperspigot:1.14.2` 
 - `felixklauke/paperspigot:1.14.1` 
+- `felixklauke/paperspigot:1.13-latest` (Use with caution, this can break / change at any time)
 - `felixklauke/paperspigot:1.13.2` 
+- `felixklauke/paperspigot:1.12-latest` (Use with caution, this can break / change at any time)
 - `felixklauke/paperspigot:1.12.2`
 - `felixklauke/paperspigot:1.11.2`
 - `felixklauke/paperspigot:1.10.2`
 - `felixklauke/paperspigot:1.9.4`
 - `felixklauke/paperspigot:1.8.8`
+
+The specific images are update by hand. The 1.x-latest images will update at nightly builds and will always
+use the latest build.
 
 # Volumes
 There are three volumes used for:
