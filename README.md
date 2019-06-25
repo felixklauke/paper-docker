@@ -18,6 +18,8 @@ docker run -it \
 
 # Tags and Versions
 The docker images are tagged for their minecraft versions. Therefor you can currently choose between this versions:
+- `felixklauke/paperspigot:latest` (Use with caution, this can break / change at any time)
+- `felixklauke/paperspigot:1.14.3` 
 - `felixklauke/paperspigot:1.14.2` 
 - `felixklauke/paperspigot:1.14.1` 
 - `felixklauke/paperspigot:1.13.2` 
