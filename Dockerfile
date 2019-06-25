@@ -104,7 +104,7 @@ ADD scripts/start.sh .
 RUN addgroup minecraft && \
     useradd -ms /bin/bash minecraft -g minecraft -d ${MINECRAFT_PATH} && \
     mkdir ${LOGS_PATH} ${DATA_PATH} ${WORLDS_PATH} ${PLUGINS_PATH} ${CONFIG_PATH} && \
-    chown minecraft:minecraft ${MINECRAFT_PATH} -R
+    chown -R minecraft:minecraft ${MINECRAFT_PATH}
 
 USER minecraft
 
