@@ -94,7 +94,14 @@ matrix:
       env:
         - MINECRAFT_VERSION_TAG=1.14.3
         - PAPERSPIGOT_CI_JOB=Paper-1.14
-        - PAPERSPIGOT_CI_BUILDNUMBER=110
+        - PAPERSPIGOT_CI_BUILDNUMBER=134
+        - ARTIFACT_NAME=paperclip.jar
+        - JAVA_VERSION=11
+    - name: "Minecraft 1.14.4"
+      env:
+        - MINECRAFT_VERSION_TAG=1.14.4
+        - PAPERSPIGOT_CI_JOB=Paper-1.14
+        - PAPERSPIGOT_CI_BUILDNUMBER=152
         - ARTIFACT_NAME=paperclip.jar
         - JAVA_VERSION=11
     - name: "Minecraft latest"
