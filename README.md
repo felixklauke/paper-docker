@@ -38,7 +38,7 @@ The specific images are update by hand. The 1.x-latest images will update at nig
 use the latest build.
 
 # Volumes
-There are three volumes used for:
+There are five volumes used for:
 - Worlds
 - Plugins
 - Config files (paper.yml, bukkit.yml, spigot.yml, server.properties, commands.yml)
