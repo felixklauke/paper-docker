@@ -13,7 +13,7 @@ docker run -it \
     -v ~/minecraft/plugins:/opt/minecraft/plugins \
     -v ~/minecraft/data:/opt/minecraft/data \
     -v ~/minecraft/logs:/opt/minecraft/logs \
-    felixklauke/paperspigot:1.14.2
+    felixklauke/paperspigot:latest
 ```
 
 # Tags and Versions

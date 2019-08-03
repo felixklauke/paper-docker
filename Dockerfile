@@ -15,10 +15,8 @@ LABEL maintainer="Felix Klauke <info@felix-klauke.de>"
 #################
 ### Arguments ###
 #################
-ARG PAPERSPIGOT_CI_JOB=Paper-1.14
-ARG PAPERSPIGOT_CI_BUILDNUMBER=95
-ARG ARTIFACT_NAME=paperclip.jar
-ARG PAPERSPIGOT_CI_URL=https://papermc.io/ci/job/${PAPERSPIGOT_CI_JOB}/${PAPERSPIGOT_CI_BUILDNUMBER}/artifact/${ARTIFACT_NAME}
+ARG PAPER_VERSION=1.14.4
+ARG PAPER_DOWNLOAD_URL=https://papermc.io/api/v1/paper/${PAPER_VERSION}/latest/download
 ARG MINECRAFT_BUILD_USER=minecraft-build
 ENV MINECRAFT_BUILD_PATH=/opt/minecraft
 
@@ -30,7 +28,7 @@ WORKDIR ${MINECRAFT_BUILD_PATH}
 ##########################
 ### Download paperclip ###
 ##########################
-ADD ${PAPERSPIGOT_CI_URL} paperclip.jar
+ADD ${PAPER_DOWNLOAD_URL} paper.jar
 
 ############
 ### User ###
@@ -43,10 +41,10 @@ USER ${MINECRAFT_BUILD_USER}
 ############################################
 ### Run paperclip and obtain patched jar ###
 ############################################
-RUN java -jar ${MINECRAFT_BUILD_PATH}/paperclip.jar; exit 0
+RUN java -jar ${MINECRAFT_BUILD_PATH}/paper.jar; exit 0
 
 # Copy built jar
-RUN mv ${MINECRAFT_BUILD_PATH}/cache/patched*.jar ${MINECRAFT_BUILD_PATH}/paperspigot.jar
+RUN mv ${MINECRAFT_BUILD_PATH}/cache/patched*.jar ${MINECRAFT_BUILD_PATH}/paper.jar
 
 ###########################
 ### Running environment ###
@@ -65,9 +63,9 @@ ENV WORLDS_PATH=${MINECRAFT_PATH}/worlds
 ENV PLUGINS_PATH=${MINECRAFT_PATH}/plugins
 ENV PROPERTIES_LOCATION=${CONFIG_PATH}/server.properties
 ENV JAVA_HEAP_SIZE=4G
-ENV JAVA_ARGS="-Xmx${JAVA_HEAP_SIZE} -Xms${JAVA_HEAP_SIZE} -XX:+UseConcMarkSweepGC -server -Dcom.mojang.eula.agree=true"
-ENV SPIGOT_ARGS="--nojline --bukkit-settings ${CONFIG_PATH}/bukkit.yml --plugins ${PLUGINS_PATH} --world-dir ${WORLDS_PATH} --spigot-settings ${CONFIG_PATH}/spigot.yml --commands-settings ${CONFIG_PATH}/commands.yml --config ${PROPERTIES_LOCATION}"
-ENV PAPERSPIGOT_ARGS="--paper-settings ${CONFIG_PATH}/paper.yml"
+ENV JAVA_ARGS="-server -Dcom.mojang.eula.agree=true"
+ENV SPIGOT_ARGS="--nojline"
+ENV PAPER_ARGS=""
 
 #################
 ### Libraries ###
@@ -86,17 +84,18 @@ HEALTHCHECK --interval=10s --timeout=5s \
 #########################
 ### Working directory ###
 #########################
-WORKDIR ${MINECRAFT_PATH}
+WORKDIR ${SERVER_PATH}
 
 ###########################################
 ### Obtain runable jar from build stage ###
 ###########################################
-COPY --from=build /opt/minecraft/paperspigot.jar ${SERVER_PATH}/
+COPY --from=build /opt/minecraft/paper.jar ${SERVER_PATH}/
 
 ######################
 ### Obtain scripts ###
 ######################
-ADD scripts/start.sh .
+ADD scripts/docker-entrypoint.sh docker-entrypoint.sh
+RUN chmod +x docker-entrypoint.sh
 
 ############
 ### User ###
@@ -107,6 +106,21 @@ RUN addgroup minecraft && \
     chown -R minecraft:minecraft ${MINECRAFT_PATH}
 
 USER minecraft
+
+#########################
+### Setup environment ###
+#########################
+# Create symlink for plugin volume as hotfix for some plugins who hard code their directories
+RUN ln -s $PLUGINS_PATH $SERVER_PATH/plugins && \
+    # Create symlink for persistent data
+    ln -s $DATA_PATH/banned-ips.json $SERVER_PATH/banned-ips.json && \
+    ln -s $DATA_PATH/banned-players.json $SERVER_PATH/banned-players.json && \
+    ln -s $DATA_PATH/help.yml $SERVER_PATH/help.yml && \
+    ln -s $DATA_PATH/ops.json $SERVER_PATH/ops.json && \
+    ln -s $DATA_PATH/permissions.yml $SERVER_PATH/permissions.yml && \
+    ln -s $DATA_PATH/whitelist.json $SERVER_PATH/whitelist.json && \
+    # Create symlink for logs
+    ln -s $LOGS_PATH $SERVER_PATH/logs
 
 ###############
 ### Volumes ###
@@ -125,4 +139,7 @@ EXPOSE 25565
 ######################################
 ### Entrypoint is the start script ###
 ######################################
-ENTRYPOINT bash start.sh
+ENTRYPOINT [ "./docker-entrypoint.sh" ]
+
+# Run Command
+CMD [ "serve" ]
