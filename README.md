@@ -7,25 +7,28 @@ You may also be interest in [waterfall-docker](https://github.com/FelixKlauke/wa
 The easiest way for a quick start would be:
 ```
 docker run -it \
-    -p 25566:25565 \
+    -p 25565:25565 \
     -v ~/minecraft/config:/opt/minecraft/config \
     -v ~/minecraft/worlds:/opt/minecraft/worlds \
     -v ~/minecraft/plugins:/opt/minecraft/plugins \
     -v ~/minecraft/data:/opt/minecraft/data \
     -v ~/minecraft/logs:/opt/minecraft/logs \
-    felixklauke/paperspigot:latest
+    felixklauke/paperspigot:1.14.4
 ```
 
 # Tags and Versions
 The docker images are tagged for their minecraft versions. Therefor you can currently choose between this versions:
-- `felixklauke/paperspigot:latest` (Use with caution, this can break / change at any time)
+- `felixklauke/paperspigot:1.14.4` 
 - `felixklauke/paperspigot:1.14.3` 
 - `felixklauke/paperspigot:1.14.2` 
 - `felixklauke/paperspigot:1.14.1` 
-- `felixklauke/paperspigot:1.13-latest` (Use with caution, this can break / change at any time)
+- `felixklauke/paperspigot:1.14`
 - `felixklauke/paperspigot:1.13.2` 
-- `felixklauke/paperspigot:1.12-latest` (Use with caution, this can break / change at any time)
+- `felixklauke/paperspigot:1.13.1`
+- `felixklauke/paperspigot:1.13`
 - `felixklauke/paperspigot:1.12.2`
+- `felixklauke/paperspigot:1.12.1`
+- `felixklauke/paperspigot:1.12`
 - `felixklauke/paperspigot:1.11.2`
 - `felixklauke/paperspigot:1.10.2`
 - `felixklauke/paperspigot:1.9.4`
@@ -51,7 +54,7 @@ version: '3.7'
 
 services:
   minecraft:
-    image: felixklauke/paperspigot:1.14.2
+    image: felixklauke/paperspigot:1.14.4
     container_name: minecraft
     stdin_open: true
     tty: true
@@ -59,7 +62,7 @@ services:
     networks:
       - minecraft
     ports:
-      - 25566:25565
+      - 25565:25565
     volumes:
       - ./config:/opt/minecraft/config
       - ./worlds:/opt/minecraft/worlds
@@ -78,7 +81,7 @@ version: '3.7'
 
 services:
   minecraft:
-    image: felixklauke/paperspigot:1.14.2
+    image: felixklauke/paperspigot:1.14.4
     container_name: minecraft
     stdin_open: true
     tty: true
@@ -86,7 +89,7 @@ services:
     networks:
       - minecraft
     ports:
-      - 25566:25565
+      - 25565:25565
     volumes:
       - minecraft-config:/opt/minecraft/config
       - minecraft-worlds:/opt/minecraft/worlds
