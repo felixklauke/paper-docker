@@ -63,9 +63,9 @@ ENV WORLDS_PATH=${MINECRAFT_PATH}/worlds
 ENV PLUGINS_PATH=${MINECRAFT_PATH}/plugins
 ENV PROPERTIES_LOCATION=${CONFIG_PATH}/server.properties
 ENV JAVA_HEAP_SIZE=4G
-ENV JAVA_ARGS="-Xmx${JAVA_HEAP_SIZE} -Xms${JAVA_HEAP_SIZE} -XX:+UseConcMarkSweepGC -server -Dcom.mojang.eula.agree=true"
-ENV SPIGOT_ARGS="--nojline --bukkit-settings ${CONFIG_PATH}/bukkit.yml --plugins ${PLUGINS_PATH} --world-dir ${WORLDS_PATH} --spigot-settings ${CONFIG_PATH}/spigot.yml --commands-settings ${CONFIG_PATH}/commands.yml --config ${PROPERTIES_LOCATION}"
-ENV PAPER_ARGS="--paper-settings ${CONFIG_PATH}/paper.yml"
+ENV JAVA_ARGS="-server -Dcom.mojang.eula.agree=true"
+ENV SPIGOT_ARGS="--nojline"
+ENV PAPER_ARGS=""
 
 #################
 ### Libraries ###
@@ -84,7 +84,7 @@ HEALTHCHECK --interval=10s --timeout=5s \
 #########################
 ### Working directory ###
 #########################
-WORKDIR ${MINECRAFT_PATH}
+WORKDIR ${SERVER_PATH}
 
 ###########################################
 ### Obtain runable jar from build stage ###
@@ -94,7 +94,7 @@ COPY --from=build /opt/minecraft/paper.jar ${SERVER_PATH}/
 ######################
 ### Obtain scripts ###
 ######################
-ADD scripts/start.sh docker-entrypoint.sh
+ADD scripts/docker-entrypoint.sh docker-entrypoint.sh
 RUN chmod +x docker-entrypoint.sh
 
 ############
@@ -140,3 +140,6 @@ EXPOSE 25565
 ### Entrypoint is the start script ###
 ######################################
 ENTRYPOINT [ "./docker-entrypoint.sh" ]
+
+# Run Command
+CMD [ "serve" ]
