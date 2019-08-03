@@ -5,7 +5,7 @@ You may also be interest in [waterfall-docker](https://github.com/FelixKlauke/wa
 
 # Getting started
 The easiest way for a quick start would be:
-```
+```bash
 docker run -it \
     -p 25565:25565 \
     -v ~/minecraft/config:/opt/minecraft/config \
@@ -49,7 +49,7 @@ You can find the mount locations in the `docker-compose.yml`
 
 # docker-compose.yml
 You can add this simple entry to your docker-compose.yml when using mounted folders:
-```
+```yaml
 version: '3.7'
 
 services:
@@ -76,7 +76,7 @@ networks:
 ```
 
 When you want to use explicit volumes, you can use this:
-```xml 
+```yaml 
 version: '3.7'
 
 services:
