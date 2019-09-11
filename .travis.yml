@@ -20,63 +20,18 @@ deploy:
 
 matrix:
   include:
-    - name: "Minecraft 1.8.8"
-      env:
-        - PAPER_VERSION=1.8.8
-        - JAVA_VERSION=8
-    - name: "Minecraft 1.9.4"
-      env:
-        - PAPER_VERSION=1.9.4
-        - JAVA_VERSION=8
-    - name: "Minecraft 1.10.2"
-      env:
-        - PAPER_VERSION=1.10.2
-        - JAVA_VERSION=8
-    - name: "Minecraft 1.11.2"
-      env:
-        - PAPER_VERSION=1.11.2
-        - JAVA_VERSION=11
-    - name: "Minecraft 1.12"
-        env:
-          - PAPER_VERSION=1.12
-          - JAVA_VERSION=11
-    - name: "Minecraft 1.12.1"
-        env:
-          - PAPER_VERSION=1.12.1
-          - JAVA_VERSION=11
-    - name: "Minecraft 1.12.2"
-      env:
-        - PAPER_VERSION=1.12.2
-        - JAVA_VERSION=11
-    - name: "Minecraft 1.13"
-      env:
-        - PAPER_VERSION=1.13
-        - JAVA_VERSION=11
-    - name: "Minecraft 1.13.1"
-      env:
-        - PAPER_VERSION=1.13.1
-        - JAVA_VERSION=11
-    - name: "Minecraft 1.13.2"
-      env:
-        - PAPER_VERSION=1.13.2
-        - JAVA_VERSION=11
-    - name: "Minecraft 1.14"
-      env:
-        - PAPER_VERSION=1.14
-        - JAVA_VERSION=11
-    - name: "Minecraft 1.14.1"
-      env:
-        - PAPER_VERSION=1.14.1
-        - JAVA_VERSION=11
-    - name: "Minecraft 1.14.2"
-      env:
-        - PAPER_VERSION=1.14.2
-        - JAVA_VERSION=11
-    - name: "Minecraft 1.14.3"
-      env:
-        - PAPER_VERSION=1.14.3
-        - JAVA_VERSION=11
-    - name: "Minecraft 1.14.4"
-      env:
-        - PAPER_VERSION=1.14.4
-        - JAVA_VERSION=11
+  - env: PAPER_VERSION=1.8.8  JAVA_VERSION=8
+  - env: PAPER_VERSION=1.9.4  JAVA_VERSION=8
+  - env: PAPER_VERSION=1.10.2 JAVA_VERSION=8
+  - env: PAPER_VERSION=1.11.2 JAVA_VERSION=11
+  - env: PAPER_VERSION=1.12   JAVA_VERSION=11
+  - env: PAPER_VERSION=1.12.1 JAVA_VERSION=11
+  - env: PAPER_VERSION=1.12.2 JAVA_VERSION=11
+  - env: PAPER_VERSION=1.13   JAVA_VERSION=11
+  - env: PAPER_VERSION=1.13.1 JAVA_VERSION=11
+  - env: PAPER_VERSION=1.13.2 JAVA_VERSION=11
+  - env: PAPER_VERSION=1.14   JAVA_VERSION=11
+  - env: PAPER_VERSION=1.14.1 JAVA_VERSION=11
+  - env: PAPER_VERSION=1.14.2 JAVA_VERSION=11
+  - env: PAPER_VERSION=1.14.3 JAVA_VERSION=11
+  - env: PAPER_VERSION=1.14.4 JAVA_VERSION=11
