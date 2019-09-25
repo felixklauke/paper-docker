@@ -1,5 +1,5 @@
 # Java Version
-ARG JAVA_VERSION=11
+ARG JAVA_VERSION=8
 
 ################################
 ### We use a java base image ###
