@@ -6,7 +6,7 @@ if [[ "$1" = 'serve' ]];  then
   # Start server
   java -jar $JAVA_ARGS \
     -XX:+UnlockExperimentalVMOptions \
-	-XX:+UseCGroupMemoryLimitForHeap \
+    -XX:+UseCGroupMemoryLimitForHeap \
     -Xmx$JAVA_HEAP_SIZE -Xms$JAVA_HEAP_SIZE \
     $SERVER_PATH/paper.jar \
     $SPIGOT_ARGS \
