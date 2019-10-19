@@ -4,13 +4,14 @@ ARG JAVA_VERSION=11
 ################################
 ### We use a java base image ###
 ################################
-FROM openjdk:${JAVA_VERSION} AS build
+FROM openjdk:${JAVA_VERSION}-alpine AS build
 
 #####################################
-### Maintained by Felix Klauke    ###
-### Contact: info@felix-klauke.de ###
+### Maintained by fisher          ###
+### Contact: fisher@theeu.uk      ###
+### Originaly by FelixKlauke      ###
 #####################################
-LABEL maintainer="Felix Klauke <info@felix-klauke.de>"
+LABEL maintainer="fisher <fisher@theeu.uk>"
 
 #################
 ### Arguments ###
@@ -49,7 +50,7 @@ RUN mv ${MINECRAFT_BUILD_PATH}/cache/patched*.jar ${MINECRAFT_BUILD_PATH}/paper.
 ###########################
 ### Running environment ###
 ###########################
-FROM openjdk:${JAVA_VERSION} AS runtime
+FROM openjdk:${JAVA_VERSION}-alpine AS runtime
 
 ##########################
 ### Environment & ARGS ###
@@ -62,7 +63,7 @@ ENV CONFIG_PATH=${MINECRAFT_PATH}/config
 ENV WORLDS_PATH=${MINECRAFT_PATH}/worlds
 ENV PLUGINS_PATH=${MINECRAFT_PATH}/plugins
 ENV PROPERTIES_LOCATION=${CONFIG_PATH}/server.properties
-ENV JAVA_HEAP_SIZE=4G
+ENV JAVA_HEAP_SIZE=2G
 ENV JAVA_ARGS="-server -Dcom.mojang.eula.agree=true"
 ENV SPIGOT_ARGS="--nojline"
 ENV PAPER_ARGS=""
