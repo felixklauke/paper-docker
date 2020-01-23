@@ -18,6 +18,7 @@ docker run -it \
 
 # Tags and Versions
 The docker images are tagged for their minecraft versions. Therefor you can currently choose between this versions:
+- `felixklauke/paperspigot:1.15.2` 
 - `felixklauke/paperspigot:1.15.1` 
 - `felixklauke/paperspigot:1.15` 
 - `felixklauke/paperspigot:1.14.4` 
@@ -56,7 +57,7 @@ version: '3.7'
 
 services:
   minecraft:
-    image: felixklauke/paperspigot:1.15.1
+    image: felixklauke/paperspigot:1.15.2
     container_name: minecraft
     stdin_open: true
     tty: true
@@ -83,7 +84,7 @@ version: '3.7'
 
 services:
   minecraft:
-    image: felixklauke/paperspigot:1.15.1
+    image: felixklauke/paperspigot:1.15.2
     container_name: minecraft
     stdin_open: true
     tty: true
