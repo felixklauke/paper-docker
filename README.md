@@ -62,8 +62,6 @@ services:
     stdin_open: true
     tty: true
     restart: always
-    healthcheck:
-      start_period: 60s
     networks:
       - minecraft
     ports:
@@ -91,8 +89,6 @@ services:
     stdin_open: true
     tty: true
     restart: always
-    healthcheck:
-      start_period: 60s
     networks:
       - minecraft
     ports:
