@@ -4,7 +4,7 @@ ARG JAVA_VERSION=11
 ################################
 ### We use a java base image ###
 ################################
-FROM openjdk:${JAVA_VERSION}-alpine AS build
+FROM openjdk:${JAVA_VERSION} AS build
 
 #####################################
 ### Maintained by fisher          ###
@@ -50,7 +50,7 @@ RUN mv ${MINECRAFT_BUILD_PATH}/cache/patched*.jar ${MINECRAFT_BUILD_PATH}/paper.
 ###########################
 ### Running environment ###
 ###########################
-FROM openjdk:${JAVA_VERSION}-alpine AS runtime
+FROM openjdk:${JAVA_VERSION} AS runtime
 
 ##########################
 ### Environment & ARGS ###
