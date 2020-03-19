@@ -78,7 +78,7 @@ RUN pip install mcstatus
 ###################
 ### Healthcheck ###
 ###################
-HEALTHCHECK --interval=10s --timeout=5s \
+HEALTHCHECK --interval=10s --timeout=5s --start-period=120s \
     CMD mcstatus localhost:$( cat $PROPERTIES_LOCATION | grep "server-port" | cut -d'=' -f2 ) ping
 
 #########################
