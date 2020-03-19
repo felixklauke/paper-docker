@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
   minecraft:
-    image: felixklauke/paperspigot:1.14.4
+    image: felixklauke/paperspigot:1.15.2
     container_name: minecraft
     stdin_open: true
     tty: true
