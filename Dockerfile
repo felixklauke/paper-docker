@@ -16,7 +16,7 @@ LABEL maintainer="fisher <fisher@theeu.uk>"
 #################
 ### Arguments ###
 #################
-ARG PAPER_VERSION=1.16.2
+ARG PAPER_VERSION=1.16.3
 ARG PAPER_DOWNLOAD_URL=https://papermc.io/api/v1/paper/${PAPER_VERSION}/latest/download
 ARG MINECRAFT_BUILD_USER=minecraft-build
 ENV MINECRAFT_BUILD_PATH=/opt/minecraft
