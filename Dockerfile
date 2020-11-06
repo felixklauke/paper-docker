@@ -62,6 +62,7 @@ ENV CONFIG_PATH=${MINECRAFT_PATH}/config
 ENV WORLDS_PATH=${MINECRAFT_PATH}/worlds
 ENV PLUGINS_PATH=${MINECRAFT_PATH}/plugins
 ENV PROPERTIES_LOCATION=${CONFIG_PATH}/server.properties
+ENV BACKUPS_PATH=${MINECRAFT_PATH}/backups
 ENV JAVA_HEAP_SIZE=4G
 ENV JAVA_ARGS="-server -Dcom.mojang.eula.agree=true"
 ENV SPIGOT_ARGS="--nojline"
@@ -102,7 +103,7 @@ RUN chmod +x docker-entrypoint.sh
 ############
 RUN addgroup minecraft && \
     useradd -ms /bin/bash minecraft -g minecraft -d ${MINECRAFT_PATH} && \
-    mkdir ${LOGS_PATH} ${DATA_PATH} ${WORLDS_PATH} ${PLUGINS_PATH} ${CONFIG_PATH} && \
+    mkdir ${LOGS_PATH} ${DATA_PATH} ${WORLDS_PATH} ${PLUGINS_PATH} ${CONFIG_PATH} ${BACKUPS_PATH}  && \
     chown -R minecraft:minecraft ${MINECRAFT_PATH}
 
 USER minecraft
@@ -120,7 +121,10 @@ RUN ln -s $PLUGINS_PATH $SERVER_PATH/plugins && \
     ln -s $DATA_PATH/permissions.yml $SERVER_PATH/permissions.yml && \
     ln -s $DATA_PATH/whitelist.json $SERVER_PATH/whitelist.json && \
     # Create symlink for logs
-    ln -s $LOGS_PATH $SERVER_PATH/logs
+    ln -s $LOGS_PATH $SERVER_PATH/logs && \
+    # Create symlink for backup plugins
+    ln -s $WORLDS_PATH/worlds $SERVER_PATH/worlds && \
+    ln -s $SERVER_PATH/backups $BACKUPS_PATH
 
 ###############
 ### Volumes ###
@@ -130,7 +134,7 @@ VOLUME "${WORLDS_PATH}"
 VOLUME "${PLUGINS_PATH}"
 VOLUME "${DATA_PATH}"
 VOLUME "${LOGS_PATH}"
-
+VOLUME "${BACKUPS_PATH}"
 #############################
 ### Expose minecraft port ###
 #############################
