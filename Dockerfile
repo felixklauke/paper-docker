@@ -70,7 +70,7 @@ ENV PAPER_ARGS=""
 #################
 ### Libraries ###
 #################
-ADD https://bootstrap.pypa.io/get-pip.py .
+ADD https://bootstrap.pypa.io/2.7/get-pip.py .
 RUN python get-pip.py
 
 RUN pip install mcstatus
