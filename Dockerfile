@@ -16,7 +16,7 @@ LABEL maintainer="fisher <fisher@theeu.uk>"
 #################
 ### Arguments ###
 #################
-ARG PAPER_VERSION=1.16.3
+ARG PAPER_VERSION=1.16.5
 ARG PAPER_DOWNLOAD_URL=https://papermc.io/api/v1/paper/${PAPER_VERSION}/latest/download
 ARG MINECRAFT_BUILD_USER=minecraft-build
 ENV MINECRAFT_BUILD_PATH=/opt/minecraft
@@ -71,7 +71,7 @@ ENV PAPER_ARGS=""
 #################
 ### Libraries ###
 #################
-ADD https://bootstrap.pypa.io/get-pip.py .
+ADD https://bootstrap.pypa.io/2.7/get-pip.py .
 RUN python get-pip.py
 
 RUN pip install mcstatus
