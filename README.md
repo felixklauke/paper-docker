@@ -13,11 +13,13 @@ docker run -it \
     -v ~/minecraft/plugins:/opt/minecraft/plugins \
     -v ~/minecraft/data:/opt/minecraft/data \
     -v ~/minecraft/logs:/opt/minecraft/logs \
-    felixklauke/paperspigot:1.16.3
+    felixklauke/paperspigot:1.16.5
 ```
 
 # Tags and Versions
 The Docker images are tagged for their Minecraft versions. These versions are currently available:
+- `felixklauke/paperspigot:1.16.5`
+- `felixklauke/paperspigot:1.16.4`
 - `felixklauke/paperspigot:1.16.3`
 - `felixklauke/paperspigot:1.16.2`
 - `felixklauke/paperspigot:1.16.1` 
@@ -63,7 +65,7 @@ version: '3.7'
 
 services:
   minecraft:
-    image: felixklauke/paperspigot:1.16.3
+    image: felixklauke/paperspigot:1.16.5
     container_name: minecraft
     stdin_open: true
     tty: true
@@ -91,7 +93,7 @@ version: '3.7'
 
 services:
   minecraft:
-    image: felixklauke/paperspigot:1.16.3
+    image: felixklauke/paperspigot:1.16.5
     container_name: minecraft
     stdin_open: true
     tty: true
