@@ -7,11 +7,10 @@ ARG JAVA_VERSION=11
 FROM openjdk:${JAVA_VERSION} AS build
 
 #####################################
-### Maintained by fisher          ###
-### Contact: fisher@theeu.uk      ###
-### Originaly by FelixKlauke      ###
+### Maintained by Felix Klauke    ###
+### Contact: info@felix-klauke.de ###
 #####################################
-LABEL maintainer="fisher <fisher@theeu.uk>"
+LABEL maintainer="Felix Klauke <info@felix-klauke.de>"
 
 #################
 ### Arguments ###
@@ -71,10 +70,10 @@ ENV PAPER_ARGS=""
 #################
 ### Libraries ###
 #################
-ADD https://bootstrap.pypa.io/pip/2.7/get-pip.py .
-RUN python get-pip.py
-
-RUN pip install mcstatus
+# Install Python3 so as to avoid EOL. Unfortunately adds ~360MB to image size.
+# Ideally we wait for upstream to switch to python3 and remove python2.
+RUN apt -q update && apt install -q -y python3 python3-pip
+RUN pip3 install mcstatus
 
 ###################
 ### Healthcheck ###
