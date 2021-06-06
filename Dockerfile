@@ -15,7 +15,7 @@ LABEL maintainer="Felix Klauke <info@felix-klauke.de>"
 #################
 ### Arguments ###
 #################
-ARG PAPER_VERSION=1.16.5
+ARG PAPER_VERSION=1.16.1
 ARG PAPER_DOWNLOAD_URL=https://papermc.io/api/v1/paper/${PAPER_VERSION}/latest/download
 ARG MINECRAFT_BUILD_USER=minecraft-build
 ENV MINECRAFT_BUILD_PATH=/opt/minecraft
@@ -62,7 +62,7 @@ ENV CONFIG_PATH=${MINECRAFT_PATH}/config
 ENV WORLDS_PATH=${MINECRAFT_PATH}/worlds
 ENV PLUGINS_PATH=${MINECRAFT_PATH}/plugins
 ENV PROPERTIES_LOCATION=${CONFIG_PATH}/server.properties
-ENV JAVA_HEAP_SIZE=2G
+ENV JAVA_HEAP_SIZE=4G
 ENV JAVA_ARGS="-server -Dcom.mojang.eula.agree=true"
 ENV SPIGOT_ARGS="--nojline"
 ENV PAPER_ARGS=""
@@ -72,6 +72,7 @@ ENV PAPER_ARGS=""
 #################
 # Install Python3 so as to avoid EOL. Unfortunately adds ~360MB to image size.
 # Ideally we wait for upstream to switch to python3 and remove python2.
+# Official python advice is to install python and pip from the same source, in this case the package manager.
 RUN apt -q update && apt install -q -y python3 python3-pip
 RUN pip3 install mcstatus
 
