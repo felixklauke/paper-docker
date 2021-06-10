@@ -70,10 +70,11 @@ ENV PAPER_ARGS=""
 #################
 ### Libraries ###
 #################
-ADD https://bootstrap.pypa.io/pip/2.7/get-pip.py .
-RUN python get-pip.py
-
-RUN pip install mcstatus
+# Install Python3 so as to avoid EOL. Unfortunately adds ~360MB to image size.
+# Ideally we wait for upstream to switch to python3 and remove python2.
+# Official python advice is to install python and pip from the same source, in this case the package manager.
+RUN apt -q update && apt install -q -y python3 python3-pip
+RUN pip3 install mcstatus
 
 ###################
 ### Healthcheck ###
