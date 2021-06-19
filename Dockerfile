@@ -1,10 +1,10 @@
 # Java Version
-ARG JAVA_VERSION=11
+ARG JAVA_VERSION=16
 
 ################################
 ### We use a java base image ###
 ################################
-FROM openjdk:${JAVA_VERSION} AS build
+FROM openjdk:${JAVA_VERSION}-alpine AS build
 
 #####################################
 ### Maintained by Felix Klauke    ###
@@ -15,7 +15,7 @@ LABEL maintainer="Felix Klauke <info@felix-klauke.de>"
 #################
 ### Arguments ###
 #################
-ARG PAPER_VERSION=1.16.1
+ARG PAPER_VERSION=1.17
 ARG PAPER_DOWNLOAD_URL=https://papermc.io/api/v1/paper/${PAPER_VERSION}/latest/download
 ARG MINECRAFT_BUILD_USER=minecraft-build
 ENV MINECRAFT_BUILD_PATH=/opt/minecraft
@@ -33,7 +33,7 @@ ADD ${PAPER_DOWNLOAD_URL} paper.jar
 ############
 ### User ###
 ############
-RUN useradd -ms /bin/bash ${MINECRAFT_BUILD_USER} && \
+RUN adduser -s /bin/bash ${MINECRAFT_BUILD_USER} -D && \
     chown ${MINECRAFT_BUILD_USER} ${MINECRAFT_BUILD_PATH} -R
 
 USER ${MINECRAFT_BUILD_USER}
@@ -49,7 +49,7 @@ RUN mv ${MINECRAFT_BUILD_PATH}/cache/patched*.jar ${MINECRAFT_BUILD_PATH}/paper.
 ###########################
 ### Running environment ###
 ###########################
-FROM openjdk:${JAVA_VERSION} AS runtime
+FROM openjdk:${JAVA_VERSION}-alpine AS runtime
 
 ##########################
 ### Environment & ARGS ###
@@ -70,10 +70,7 @@ ENV PAPER_ARGS=""
 #################
 ### Libraries ###
 #################
-# Install Python3 so as to avoid EOL. Unfortunately adds ~360MB to image size.
-# Ideally we wait for upstream to switch to python3 and remove python2.
-# Official python advice is to install python and pip from the same source, in this case the package manager.
-RUN apt -q update && apt install -q -y python3 python3-pip
+RUN apk add py3-pip
 RUN pip3 install mcstatus
 
 ###################
@@ -102,7 +99,7 @@ RUN chmod +x docker-entrypoint.sh
 ### User ###
 ############
 RUN addgroup minecraft && \
-    useradd -ms /bin/bash minecraft -g minecraft -d ${MINECRAFT_PATH} && \
+    adduser -s /bin/bash minecraft -G minecraft -h ${MINECRAFT_PATH} -D && \
     mkdir ${LOGS_PATH} ${DATA_PATH} ${WORLDS_PATH} ${PLUGINS_PATH} ${CONFIG_PATH} && \
     chown -R minecraft:minecraft ${MINECRAFT_PATH}
 
