@@ -16,7 +16,8 @@ LABEL maintainer="Felix Klauke <info@felix-klauke.de>"
 ### Arguments ###
 #################
 ARG PAPER_VERSION=1.17
-ARG PAPER_DOWNLOAD_URL=https://papermc.io/api/v1/paper/${PAPER_VERSION}/latest/download
+ARG PAPER_BUILD=399
+ARG PAPER_DOWNLOAD_URL=https://papermc.io/api/v2/projects/paper/versions/${PAPER_VERSION}/builds/${PAPER_BUILD}/downloads/paper-${PAPER_VERSION}-${PAPER_BUILD}.jar
 ARG MINECRAFT_BUILD_USER=minecraft-build
 ENV MINECRAFT_BUILD_PATH=/opt/minecraft
 
