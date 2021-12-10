@@ -72,7 +72,7 @@ ENV PAPER_ARGS=""
 ### Libraries ###
 #################
 RUN apk add py3-pip
-RUN pip3 install mcstatus
+RUN pip3 install --ignore-installed six mcstatus
 
 ###################
 ### Healthcheck ###
