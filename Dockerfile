@@ -47,6 +47,11 @@ RUN pip3 install --ignore-installed six mcstatus
 HEALTHCHECK --interval=10s --timeout=5s --start-period=120s \
     CMD mcstatus localhost:$( cat $PROPERTIES_LOCATION | grep "server-port" | cut -d'=' -f2 ) ping
 
+######################
+### Obtain scripts ###
+######################
+ADD scripts/docker-entrypoint.sh docker-entrypoint.sh
+RUN chmod +x docker-entrypoint.sh
 
 ############
 ### User ###
@@ -68,11 +73,7 @@ WORKDIR ${SERVER_PATH}
 ################################
 ADD ${PAPER_DOWNLOAD_URL} paper.jar
 
-######################
-### Obtain scripts ###
-######################
-ADD scripts/docker-entrypoint.sh docker-entrypoint.sh
-RUN chmod +x docker-entrypoint.sh
+
 
 #########################
 ### Setup environment ###
