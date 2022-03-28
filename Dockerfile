@@ -1,10 +1,10 @@
 # Java Version
-ARG JAVA_VERSION=16
+ARG JAVA_VERSION=17
 
-################################
-### We use a java base image ###
-################################
-FROM openjdk:${JAVA_VERSION}-alpine AS build
+###########################
+### Running environment ###
+###########################
+FROM openjdk:${JAVA_VERSION}-alpine AS runtime
 
 #####################################
 ### Maintained by Felix Klauke    ###
@@ -15,41 +15,9 @@ LABEL maintainer="Felix Klauke <info@felix-klauke.de>"
 #################
 ### Arguments ###
 #################
-ARG PAPER_VERSION=1.17
-ARG PAPER_DOWNLOAD_URL=https://papermc.io/api/v1/paper/${PAPER_VERSION}/latest/download
-ARG MINECRAFT_BUILD_USER=minecraft-build
-ENV MINECRAFT_BUILD_PATH=/opt/minecraft
-
-#########################
-### Working directory ###
-#########################
-WORKDIR ${MINECRAFT_BUILD_PATH}
-
-##########################
-### Download paperclip ###
-##########################
-ADD ${PAPER_DOWNLOAD_URL} paper.jar
-
-############
-### User ###
-############
-RUN adduser -s /bin/bash ${MINECRAFT_BUILD_USER} -D && \
-    chown ${MINECRAFT_BUILD_USER} ${MINECRAFT_BUILD_PATH} -R
-
-USER ${MINECRAFT_BUILD_USER}
-
-############################################
-### Run paperclip and obtain patched jar ###
-############################################
-RUN java -jar ${MINECRAFT_BUILD_PATH}/paper.jar; exit 0
-
-# Copy built jar
-RUN mv ${MINECRAFT_BUILD_PATH}/cache/patched*.jar ${MINECRAFT_BUILD_PATH}/paper.jar
-
-###########################
-### Running environment ###
-###########################
-FROM openjdk:${JAVA_VERSION}-alpine AS runtime
+ARG PAPER_VERSION=1.18.2
+ARG PAPER_BUILD=268
+ARG PAPER_DOWNLOAD_URL=https://papermc.io/api/v2/projects/paper/versions/${PAPER_VERSION}/builds/${PAPER_BUILD}/downloads/paper-${PAPER_VERSION}-${PAPER_BUILD}.jar
 
 ##########################
 ### Environment & ARGS ###
@@ -71,23 +39,13 @@ ENV PAPER_ARGS=""
 ### Libraries ###
 #################
 RUN apk add py3-pip
-RUN pip3 install mcstatus
+RUN pip3 install --ignore-installed six mcstatus
 
 ###################
 ### Healthcheck ###
 ###################
 HEALTHCHECK --interval=10s --timeout=5s --start-period=120s \
     CMD mcstatus localhost:$( cat $PROPERTIES_LOCATION | grep "server-port" | cut -d'=' -f2 ) ping
-
-#########################
-### Working directory ###
-#########################
-WORKDIR ${SERVER_PATH}
-
-###########################################
-### Obtain runable jar from build stage ###
-###########################################
-COPY --from=build /opt/minecraft/paper.jar ${SERVER_PATH}/
 
 ######################
 ### Obtain scripts ###
@@ -100,10 +58,22 @@ RUN chmod +x docker-entrypoint.sh
 ############
 RUN addgroup minecraft && \
     adduser -s /bin/bash minecraft -G minecraft -h ${MINECRAFT_PATH} -D && \
-    mkdir ${LOGS_PATH} ${DATA_PATH} ${WORLDS_PATH} ${PLUGINS_PATH} ${CONFIG_PATH} && \
+    mkdir ${SERVER_PATH} ${LOGS_PATH} ${DATA_PATH} ${WORLDS_PATH} ${PLUGINS_PATH} ${CONFIG_PATH} && \
     chown -R minecraft:minecraft ${MINECRAFT_PATH}
 
 USER minecraft
+
+#########################
+### Working directory ###
+#########################
+WORKDIR ${SERVER_PATH}
+
+################################
+### Download jar from paper. ###
+################################
+ADD ${PAPER_DOWNLOAD_URL} paper.jar
+
+
 
 #########################
 ### Setup environment ###
