@@ -58,7 +58,7 @@ RUN chmod +x docker-entrypoint.sh
 ############
 RUN addgroup minecraft && \
     adduser -s /bin/bash minecraft -G minecraft -h ${MINECRAFT_PATH} -D && \
-    mkdir ${LOGS_PATH} ${DATA_PATH} ${WORLDS_PATH} ${PLUGINS_PATH} ${CONFIG_PATH} && \
+    mkdir ${SERVER_PATH} ${LOGS_PATH} ${DATA_PATH} ${WORLDS_PATH} ${PLUGINS_PATH} ${CONFIG_PATH} && \
     chown -R minecraft:minecraft ${MINECRAFT_PATH}
 
 USER minecraft
