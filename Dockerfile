@@ -35,6 +35,21 @@ ENV JAVA_ARGS="-server -Dcom.mojang.eula.agree=true"
 ENV SPIGOT_ARGS="--nojline"
 ENV PAPER_ARGS=""
 
+############
+### User ###
+############
+RUN addgroup minecraft && \
+    adduser -s /bin/bash minecraft -G minecraft -h ${MINECRAFT_PATH} -D && \
+    mkdir ${LOGS_PATH} ${DATA_PATH} ${WORLDS_PATH} ${PLUGINS_PATH} ${CONFIG_PATH} && \
+    chown -R minecraft:minecraft ${MINECRAFT_PATH}
+
+USER minecraft
+
+#########################
+### Working directory ###
+#########################
+WORKDIR ${SERVER_PATH}
+
 #################
 ### Libraries ###
 #################
@@ -47,10 +62,6 @@ RUN pip3 install --ignore-installed six mcstatus
 HEALTHCHECK --interval=10s --timeout=5s --start-period=120s \
     CMD mcstatus localhost:$( cat $PROPERTIES_LOCATION | grep "server-port" | cut -d'=' -f2 ) ping
 
-#########################
-### Working directory ###
-#########################
-WORKDIR ${SERVER_PATH}
 
 ################################
 ### Download jar from paper. ###
@@ -62,16 +73,6 @@ ADD ${PAPER_DOWNLOAD_URL} paper.jar
 ######################
 ADD scripts/docker-entrypoint.sh docker-entrypoint.sh
 RUN chmod +x docker-entrypoint.sh
-
-############
-### User ###
-############
-RUN addgroup minecraft && \
-    adduser -s /bin/bash minecraft -G minecraft -h ${MINECRAFT_PATH} -D && \
-    mkdir ${LOGS_PATH} ${DATA_PATH} ${WORLDS_PATH} ${PLUGINS_PATH} ${CONFIG_PATH} && \
-    chown -R minecraft:minecraft ${MINECRAFT_PATH}
-
-USER minecraft
 
 #########################
 ### Setup environment ###
