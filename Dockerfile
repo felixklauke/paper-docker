@@ -35,6 +35,19 @@ ENV JAVA_ARGS="-server -Dcom.mojang.eula.agree=true"
 ENV SPIGOT_ARGS="--nojline"
 ENV PAPER_ARGS=""
 
+#################
+### Libraries ###
+#################
+RUN apk add py3-pip
+RUN pip3 install --ignore-installed six mcstatus
+
+###################
+### Healthcheck ###
+###################
+HEALTHCHECK --interval=10s --timeout=5s --start-period=120s \
+    CMD mcstatus localhost:$( cat $PROPERTIES_LOCATION | grep "server-port" | cut -d'=' -f2 ) ping
+
+
 ############
 ### User ###
 ############
@@ -49,19 +62,6 @@ USER minecraft
 ### Working directory ###
 #########################
 WORKDIR ${SERVER_PATH}
-
-#################
-### Libraries ###
-#################
-RUN apk add py3-pip
-RUN pip3 install --ignore-installed six mcstatus
-
-###################
-### Healthcheck ###
-###################
-HEALTHCHECK --interval=10s --timeout=5s --start-period=120s \
-    CMD mcstatus localhost:$( cat $PROPERTIES_LOCATION | grep "server-port" | cut -d'=' -f2 ) ping
-
 
 ################################
 ### Download jar from paper. ###
